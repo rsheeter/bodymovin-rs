@@ -20,7 +20,7 @@ pub struct GradientStroke {
     #[serde(rename = "a")]
     pub highlight_angle: Option<properties::Scalar>,
     #[serde(rename = "g")]
-    pub gradient_colors: serde_json::Value,
+    pub gradient_colors: helpers::GradientColors,
     #[serde(rename = "w")]
     pub stroke_width: properties::Scalar,
     #[serde(rename = "lc")]

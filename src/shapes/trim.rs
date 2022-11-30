@@ -1,4 +1,4 @@
-use crate::properties;
+use crate::{properties, helpers};
 use serde::Deserialize;
 
 #[derive(Debug, Deserialize)]
@@ -13,4 +13,6 @@ pub struct Trim {
     pub end: properties::Scalar,
     #[serde(rename = "o")]
     pub offset: properties::Scalar,
+    #[serde(rename = "m")]
+    pub mode: helpers::TrimMode,
 }
