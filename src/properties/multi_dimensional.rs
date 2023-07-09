@@ -82,3 +82,28 @@ impl MultiDimensional {
         }
     }
 }
+
+#[derive(Debug, Deserialize)]
+pub struct SplitVector {
+    #[serde(rename = "s")]
+    pub split: bool,
+    #[serde(rename = "x", default = "properties::Scalar::zero")]
+    pub x_component: super::Scalar,
+    #[serde(rename = "y", default = "properties::Scalar::zero")]
+    pub y_component: super::Scalar,
+    #[serde(rename = "z", default = "properties::Scalar::zero")]
+    pub z_component: super::Scalar,
+}
+
+#[derive(Debug, Deserialize)]
+#[serde(untagged)]
+pub enum SplittableMultiDimensional {
+    Split(SplitVector),
+    Uniform(MultiDimensional),
+}
+
+impl SplittableMultiDimensional {
+    pub(crate) fn zero() -> Self {
+        Self::Uniform(MultiDimensional::zero())
+    }
+}

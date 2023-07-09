@@ -5,8 +5,8 @@ use serde::Deserialize;
 pub struct Transform {
     #[serde(rename = "a", default = "properties::MultiDimensional::zero")]
     pub anchor_point: properties::MultiDimensional,
-    #[serde(rename = "p", default = "properties::MultiDimensional::zero")]
-    pub position: properties::MultiDimensional,
+    #[serde(rename = "p", default = "properties::SplittableMultiDimensional::zero")]
+    pub position: properties::SplittableMultiDimensional,
     #[serde(rename = "s", default = "properties::MultiDimensional::hundred")]
     pub scale: properties::MultiDimensional,
     #[serde(rename = "r", default = "properties::Scalar::zero")]
