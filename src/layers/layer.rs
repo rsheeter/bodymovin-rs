@@ -7,10 +7,18 @@ pub struct Layer<M> {
     pub transform: helpers::Transform,
     #[serde(deserialize_with = "util::bool_from_int", default)]
     pub auto_orient: bool,
+    #[serde(rename = "w")]
+    pub width: Option<i64>,
+    #[serde(rename = "h")]
+    pub height: Option<i64>,
     #[serde(rename = "bm", default)]
     pub blend_mode: helpers::BlendMode,
     #[serde(rename = "ddd", deserialize_with = "util::bool_from_int", default)]
     pub is_3d: bool,
+    #[serde(rename = "td", deserialize_with = "util::bool_from_int", default)]
+    pub is_track_matte: bool,
+    #[serde(rename = "tt")]
+    pub matte_mode: Option<helpers::MatteMode>,
     #[serde(rename = "ind")]
     pub index: i64,
     #[serde(rename = "cl")]

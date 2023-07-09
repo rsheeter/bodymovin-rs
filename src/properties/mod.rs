@@ -1,9 +1,10 @@
 mod double_keyframe;
+mod gradient;
 mod multi_dimensional;
 mod scalar;
 mod shape;
 
-pub use self::{double_keyframe::*, multi_dimensional::*, scalar::*, shape::*};
+pub use self::{double_keyframe::*, gradient::*, multi_dimensional::*, scalar::*, shape::*};
 use serde::{de::Deserializer, Deserialize};
 
 #[derive(Debug, Deserialize)]

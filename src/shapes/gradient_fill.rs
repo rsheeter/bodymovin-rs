@@ -1,4 +1,4 @@
-use crate::{properties, shapes};
+use crate::{helpers, properties, shapes};
 use serde::Deserialize;
 
 #[derive(Debug, Deserialize)]
@@ -20,5 +20,5 @@ pub struct GradientFill {
     #[serde(rename = "a")]
     pub highlight_angle: Option<properties::Scalar>,
     #[serde(rename = "g")]
-    pub gradient_colors: serde_json::Value,
+    pub gradient_colors: helpers::GradientColors,
 }
