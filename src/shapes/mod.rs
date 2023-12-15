@@ -18,17 +18,17 @@ pub use self::{
     repeater::*, repeater::*, rounded_corners::*, shape::*, star::*, stroke::*, transform::*,
     trim::*,
 };
-use serde::Deserialize;
-use serde_repr::Deserialize_repr;
+use serde::{Deserialize, Serialize};
+use serde_repr::{Deserialize_repr, Serialize_repr};
 
-#[derive(Debug, Deserialize_repr)]
+#[derive(Debug, Serialize_repr, Deserialize_repr)]
 #[repr(u8)]
 pub enum GradientType {
     Linear = 1,
     Radial = 2,
 }
 
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 #[serde(tag = "ty")]
 pub enum AnyShape {
     #[serde(rename = "sh")]

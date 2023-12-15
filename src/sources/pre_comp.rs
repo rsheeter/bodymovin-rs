@@ -1,7 +1,7 @@
 use crate::layers;
-use serde::Deserialize;
+use serde::{Deserialize, Serialize};
 
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 pub struct PreComp {
     pub id: String,
     #[serde(default)]

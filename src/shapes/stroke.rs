@@ -1,7 +1,7 @@
 use crate::{helpers, properties};
-use serde::Deserialize;
+use serde::{Deserialize, Serialize};
 
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 pub struct Stroke {
     #[serde(rename = "mn")]
     pub match_name: Option<String>,

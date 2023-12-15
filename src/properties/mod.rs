@@ -5,7 +5,7 @@ mod scalar;
 mod shape;
 
 pub use self::{double_keyframe::*, gradient::*, multi_dimensional::*, scalar::*, shape::*};
-use serde::{de::Deserializer, Deserialize};
+use serde::{de::Deserializer, Deserialize, Serialize};
 
 #[derive(Debug, Deserialize)]
 #[serde(untagged)]
@@ -30,7 +30,7 @@ where
     Destructurer::deserialize(deserializer).map(Into::into)
 }
 
-#[derive(Clone, Debug, Deserialize)]
+#[derive(Clone, Debug, Serialize, Deserialize)]
 pub struct ControlPoint2d {
     #[serde(deserialize_with = "destructure")]
     pub x: f64,
@@ -38,13 +38,13 @@ pub struct ControlPoint2d {
     pub y: f64,
 }
 
-#[derive(Clone, Debug, Deserialize)]
+#[derive(Clone, Debug, Serialize, Deserialize)]
 pub struct ControlPoint3d {
     pub x: [f64; 3],
     pub y: [f64; 3],
 }
 
-#[derive(Clone, Debug, Deserialize)]
+#[derive(Clone, Debug, Serialize, Deserialize)]
 pub struct Bezier2d {
     #[serde(rename = "i")]
     pub in_value: ControlPoint2d,
@@ -52,7 +52,7 @@ pub struct Bezier2d {
     pub out_value: ControlPoint2d,
 }
 
-#[derive(Clone, Debug, Deserialize)]
+#[derive(Clone, Debug, Serialize, Deserialize)]
 pub struct Bezier3d {
     #[serde(rename = "i")]
     pub in_value: ControlPoint3d,
@@ -60,14 +60,14 @@ pub struct Bezier3d {
     pub out_value: ControlPoint3d,
 }
 
-#[derive(Clone, Debug, Deserialize)]
+#[derive(Clone, Debug, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum BezierEase {
     _2D(Bezier2d),
     _3D(Bezier3d),
 }
 
-#[derive(Clone, Debug, Deserialize)]
+#[derive(Clone, Debug, Serialize, Deserialize)]
 pub struct SpatialBezier {
     #[serde(rename = "ti")]
     pub in_value: Vec<f64>,
@@ -105,7 +105,7 @@ impl SpatialBezier {
     }
 }
 
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum Value<F, A> {
     Fixed(F),
@@ -121,7 +121,7 @@ where
     }
 }
 
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 pub struct Property<F, A> {
     #[serde(rename = "k")]
     pub value: Value<F, A>,

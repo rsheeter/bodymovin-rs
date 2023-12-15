@@ -1,7 +1,7 @@
 use crate::properties;
-use serde::Deserialize;
+use serde::{Deserialize, Serialize};
 
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 pub struct GradientColors {
     #[serde(rename = "p")]
     pub count: f64,

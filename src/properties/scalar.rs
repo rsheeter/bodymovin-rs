@@ -1,11 +1,11 @@
 use crate::{properties, util};
-use serde::Deserialize;
+use serde::{Deserialize, Serialize};
 
 use super::Value;
 
 pub type ScalarValue = f64;
 
-#[derive(Clone, Copy, Debug, Deserialize)]
+#[derive(Clone, Copy, Debug, Serialize, Deserialize)]
 #[repr(transparent)]
 pub struct DestructuredScalarValue(
     #[serde(deserialize_with = "properties::destructure")] pub ScalarValue,
@@ -17,7 +17,7 @@ impl Into<ScalarValue> for DestructuredScalarValue {
     }
 }
 
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 pub struct ScalarKeyframe {
     #[serde(rename = "s")]
     pub start_value: Option<DestructuredScalarValue>,

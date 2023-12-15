@@ -1,7 +1,7 @@
 use crate::shapes;
-use serde::Deserialize;
+use serde::{Deserialize, Serialize};
 
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 pub struct Bounds {
     #[serde(rename = "l")]
     pub left: f64,
@@ -13,7 +13,7 @@ pub struct Bounds {
     pub right: f64,
 }
 
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 pub struct ShapeMixin {
     pub bounds: Option<Bounds>,
     #[serde(default)]

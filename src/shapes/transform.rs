@@ -1,7 +1,7 @@
 use crate::properties;
-use serde::Deserialize;
+use serde::{Deserialize, Serialize};
 
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 pub struct Transform {
     #[serde(rename = "nm")]
     pub name: Option<String>,

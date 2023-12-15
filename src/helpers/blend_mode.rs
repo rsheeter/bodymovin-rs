@@ -1,6 +1,6 @@
-use serde_repr::Deserialize_repr;
+use serde_repr::{Deserialize_repr, Serialize_repr};
 
-#[derive(Debug, Deserialize_repr)]
+#[derive(Debug, Serialize_repr, Deserialize_repr)]
 #[repr(u8)]
 pub enum BlendMode {
     Normal = 0,

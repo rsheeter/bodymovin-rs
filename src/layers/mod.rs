@@ -7,9 +7,10 @@ mod solid;
 mod text;
 
 pub use self::{image::*, layer::*, null::*, pre_comp::*, shape::*, solid::*, text::*};
-use serde::{de::Deserializer, Deserialize};
+use serde::{de::Deserializer, Deserialize, Serialize};
 
-#[derive(Debug)]
+#[derive(Serialize, Debug)]
+#[serde(untagged)]
 pub enum AnyLayer {
     PreComp(PreComp),
     Solid(Solid),

@@ -6,7 +6,7 @@ pub mod shapes;
 pub mod sources;
 mod util;
 
-use serde::Deserialize;
+use serde::{Deserialize, Serialize};
 use std::path::Path;
 use thiserror::Error;
 
@@ -18,7 +18,7 @@ pub enum Error {
     ParseFailed(#[from] serde_json::Error),
 }
 
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 pub struct Bodymovin {
     #[serde(rename = "ip")]
     pub in_point: f64,

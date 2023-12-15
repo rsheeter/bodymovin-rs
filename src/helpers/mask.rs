@@ -1,7 +1,7 @@
 use crate::properties;
-use serde::Deserialize;
+use serde::{Deserialize, Serialize};
 
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 pub enum MaskMode {
     #[serde(rename = "n")]
     None,
@@ -25,7 +25,7 @@ impl Default for MaskMode {
     }
 }
 
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 pub struct Mask {
     #[serde(rename = "inv")]
     pub inverted: bool,
