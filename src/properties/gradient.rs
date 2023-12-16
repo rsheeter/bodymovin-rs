@@ -1,7 +1,7 @@
 use crate::{properties, util};
 use serde::Deserialize;
 
-#[derive(Debug, Deserialize)]
+#[derive(Clone, Debug, Deserialize)]
 pub struct GradientStopsValue {
     #[serde(rename = "c")]
     pub closed: Option<bool>,
@@ -13,7 +13,7 @@ pub struct GradientStopsValue {
     pub vertices: Vec<f64>,
 }
 
-#[derive(Debug, Deserialize)]
+#[derive(Clone, Debug, Deserialize)]
 pub struct GradientStopsKeyframe {
     #[serde(rename = "s")]
     pub start_value: Option<Vec<GradientStopsValue>>,

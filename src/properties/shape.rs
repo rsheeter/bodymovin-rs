@@ -1,7 +1,7 @@
 use crate::{properties, util};
 use serde::{Deserialize, Serialize};
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Clone, Debug, Serialize, Deserialize)]
 pub struct ShapeValue {
     #[serde(rename = "c")]
     pub closed: Option<bool>,
@@ -13,7 +13,7 @@ pub struct ShapeValue {
     pub vertices: Vec<(f64, f64)>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Clone, Debug, Serialize, Deserialize)]
 pub struct ShapeKeyframe {
     #[serde(rename = "s")]
     pub start_value: Option<Vec<ShapeValue>>,

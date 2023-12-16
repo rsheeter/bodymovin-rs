@@ -1,7 +1,7 @@
 use crate::{properties, util};
 use serde::Deserialize;
 
-#[derive(Debug, Deserialize)]
+#[derive(Clone, Debug, Deserialize)]
 pub struct DoubleKeyframe {
     #[serde(rename = "s")]
     pub start_value: Option<properties::ScalarValue>,

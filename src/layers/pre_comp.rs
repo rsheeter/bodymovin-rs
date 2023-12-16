@@ -1,7 +1,7 @@
 use crate::properties;
 use serde::{Deserialize, Serialize};
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct PreCompMixin {
     #[serde(rename = "refId")]
     pub ref_id: String,

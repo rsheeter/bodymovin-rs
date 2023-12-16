@@ -9,7 +9,7 @@ mod text;
 pub use self::{image::*, layer::*, null::*, pre_comp::*, shape::*, solid::*, text::*};
 use serde::{de::Deserializer, Deserialize, Serialize};
 
-#[derive(Serialize, Debug)]
+#[derive(Serialize, Clone, Debug)]
 #[serde(untagged)]
 pub enum AnyLayer {
     PreComp(PreComp),
@@ -29,7 +29,7 @@ impl<'de> Deserialize<'de> for AnyLayer {
         use serde::__private::de::{ContentDeserializer, TaggedContentVisitor};
         use serde_repr::Deserialize_repr;
 
-        #[derive(Debug, Deserialize_repr)]
+        #[derive(Clone, Debug, Deserialize_repr)]
         #[repr(u8)]
         enum LayerTag {
             PreComp = 0,

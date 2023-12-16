@@ -18,7 +18,7 @@ pub enum Error {
     ParseFailed(#[from] serde_json::Error),
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Clone, Debug, Serialize, Deserialize)]
 pub struct Bodymovin {
     #[serde(rename = "ip")]
     pub in_point: f64,

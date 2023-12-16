@@ -1,7 +1,7 @@
 use crate::{helpers, properties};
 use serde::{Deserialize, Serialize};
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Clone, Debug, Serialize, Deserialize)]
 pub struct Repeater {
     #[serde(rename = "mn")]
     pub match_name: Option<String>,
@@ -17,7 +17,7 @@ pub struct Repeater {
     pub transform: RepeaterTransform,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Clone, Debug, Serialize, Deserialize)]
 pub struct RepeaterTransform {
     #[serde(rename = "a", default = "properties::MultiDimensional::zero")]
     pub anchor_point: properties::MultiDimensional,

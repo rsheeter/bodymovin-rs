@@ -14,7 +14,7 @@ use std::fmt::Debug;
         }
     }
 */
-#[derive(Serialize, Deserialize)]
+#[derive(Clone, Serialize, Deserialize)]
 pub struct TextProperties {
     #[serde(rename = "t")]
     pub text: String,
@@ -23,22 +23,22 @@ pub struct TextProperties {
     #[serde(rename = "fc")]
     pub font_color: Vec<f64>,
 }
-#[derive(Serialize, Deserialize)]
+#[derive(Clone, Serialize, Deserialize)]
 pub struct TextKeyframeData {
     #[serde(rename = "s")]
     pub properties: TextProperties,
 }
-#[derive(Serialize, Deserialize)]
+#[derive(Clone, Serialize, Deserialize)]
 pub struct TextDocumentData {
     #[serde(rename = "k")]
     pub keyframe_data: Vec<TextKeyframeData>,
 }
-#[derive(Serialize, Deserialize)]
+#[derive(Clone, Serialize, Deserialize)]
 pub struct TextData {
     #[serde(rename = "d")]
     pub document_data: TextDocumentData,
 }
-#[derive(Serialize, Deserialize)]
+#[derive(Clone, Serialize, Deserialize)]
 pub struct TextMixin {
     #[serde(rename = "t")]
     pub text_data: TextData,

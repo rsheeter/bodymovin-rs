@@ -2,14 +2,14 @@ use crate::properties;
 use serde::{Deserialize, Serialize};
 use serde_repr::{Deserialize_repr, Serialize_repr};
 
-#[derive(Debug, Serialize_repr, Deserialize_repr)]
+#[derive(Clone, Debug, Serialize_repr, Deserialize_repr)]
 #[repr(u8)]
 pub enum StarType {
     Star = 1,
     Polygon = 2,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Clone, Debug, Serialize, Deserialize)]
 pub struct Star {
     #[serde(rename = "mn")]
     pub match_name: Option<String>,

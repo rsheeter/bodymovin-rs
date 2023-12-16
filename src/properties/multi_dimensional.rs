@@ -4,7 +4,7 @@ use serde::{Deserialize, Serialize};
 
 pub type MultiDimensionalValue = Vec<properties::ScalarValue>;
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Clone, Debug, Serialize, Deserialize)]
 pub struct MultiDimensionalKeyframe {
     #[serde(rename = "s")]
     pub start_value: Option<MultiDimensionalValue>,
@@ -83,7 +83,7 @@ impl MultiDimensional {
     }
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Clone, Debug, Serialize, Deserialize)]
 pub struct SplitVector {
     #[serde(rename = "s")]
     pub split: bool,
@@ -95,7 +95,7 @@ pub struct SplitVector {
     pub z_component: super::Scalar,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Clone, Debug, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum SplittableMultiDimensional {
     Split(SplitVector),

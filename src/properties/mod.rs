@@ -105,7 +105,7 @@ impl SpatialBezier {
     }
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Clone, Debug, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum Value<F, A> {
     Fixed(F),
@@ -121,7 +121,7 @@ where
     }
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Clone, Debug, Serialize, Deserialize)]
 pub struct Property<F, A> {
     #[serde(rename = "k")]
     pub value: Value<F, A>,

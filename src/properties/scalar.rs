@@ -17,7 +17,7 @@ impl Into<ScalarValue> for DestructuredScalarValue {
     }
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Clone, Debug, Serialize, Deserialize)]
 pub struct ScalarKeyframe {
     #[serde(rename = "s")]
     pub start_value: Option<DestructuredScalarValue>,

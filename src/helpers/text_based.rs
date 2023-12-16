@@ -1,6 +1,6 @@
 use serde_repr::Deserialize_repr;
 
-#[derive(Debug, Deserialize_repr)]
+#[derive(Clone, Debug, Deserialize_repr)]
 #[repr(u8)]
 pub enum TextBased {
     Characters = 1,

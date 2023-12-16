@@ -1,7 +1,7 @@
 use crate::{helpers, properties, shapes};
 use serde::{Deserialize, Serialize};
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Clone, Debug, Serialize, Deserialize)]
 pub struct GradientFill {
     #[serde(rename = "mn")]
     pub match_name: Option<String>,
