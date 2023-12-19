@@ -1,8 +1,10 @@
-use crate::properties;
+use crate::{properties, util};
 use serde::{Deserialize, Serialize};
 
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub struct SolidMixin {
+    #[serde(default = "util::a_u8_1_please")]
+    ty: u8,
     #[serde(rename = "sc")]
     pub color: String,
     #[serde(rename = "sh")]

@@ -19,8 +19,10 @@ impl Into<ScalarValue> for DestructuredScalarValue {
 
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub struct ScalarKeyframe {
+    #[serde(skip_serializing_if = "Option::is_none")]
     #[serde(rename = "s")]
     pub start_value: Option<DestructuredScalarValue>,
+    #[serde(skip_serializing_if = "Option::is_none")]
     #[serde(rename = "e")]
     pub end_value: Option<DestructuredScalarValue>,
     #[serde(rename = "t")]

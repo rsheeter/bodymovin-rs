@@ -11,16 +11,20 @@ pub enum StarType {
 
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub struct Star {
+    #[serde(skip_serializing_if = "Option::is_none")]
     #[serde(rename = "mn")]
     pub match_name: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
     #[serde(rename = "nm")]
     pub name: Option<String>,
     #[serde(rename = "d")]
     pub direction: f64,
     #[serde(rename = "p")]
     pub position: properties::MultiDimensional,
+    #[serde(skip_serializing_if = "Option::is_none")]
     #[serde(rename = "ir")]
     pub inner_radius: Option<properties::Scalar>,
+    #[serde(skip_serializing_if = "Option::is_none")]
     #[serde(rename = "is")]
     pub inner_roundness: Option<properties::Scalar>,
     #[serde(rename = "or")]

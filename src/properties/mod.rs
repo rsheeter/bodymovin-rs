@@ -125,8 +125,10 @@ where
 pub struct Property<F, A> {
     #[serde(rename = "k")]
     pub value: Value<F, A>,
+    #[serde(skip_serializing_if = "Option::is_none")]
     #[serde(rename = "x")]
     pub expression: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
     #[serde(rename = "ix")]
     pub index: Option<i64>,
 }

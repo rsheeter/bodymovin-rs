@@ -1,4 +1,4 @@
-use crate::shapes;
+use crate::{shapes, util};
 use serde::{Deserialize, Serialize};
 
 #[derive(Clone, Debug, Serialize, Deserialize)]
@@ -15,6 +15,9 @@ pub struct Bounds {
 
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub struct ShapeMixin {
+    #[serde(default = "util::a_u8_4_please")]
+    ty: u8,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub bounds: Option<Bounds>,
     #[serde(default)]
     pub shapes: Vec<shapes::AnyShape>,

@@ -28,12 +28,14 @@ pub struct Bodymovin {
     pub frame_rate: f64,
     #[serde(rename = "w")]
     pub width: i64,
+    #[serde(skip_serializing_if = "util::bool_is_false")]
     #[serde(rename = "ddd", deserialize_with = "util::bool_from_int", default)]
     pub is_3d: bool,
     #[serde(rename = "h")]
     pub height: i64,
     #[serde(rename = "v")]
     pub version: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
     #[serde(rename = "nm")]
     pub name: Option<String>,
     #[serde(default)]

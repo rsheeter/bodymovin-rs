@@ -1,6 +1,8 @@
 use serde::{Deserialize, Serialize};
 use std::fmt::Debug;
 
+use crate::util;
+
 // TODO: Is there a nicer way to deserialize this nested data?
 /* "t" {
         "d" {
@@ -40,6 +42,8 @@ pub struct TextData {
 }
 #[derive(Clone, Serialize, Deserialize)]
 pub struct TextMixin {
+    #[serde(default = "util::a_u8_5_please")]
+    ty: u8,
     #[serde(rename = "t")]
     pub text_data: TextData,
 }

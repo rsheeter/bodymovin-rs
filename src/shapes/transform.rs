@@ -3,6 +3,7 @@ use serde::{Deserialize, Serialize};
 
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub struct Transform {
+    #[serde(skip_serializing_if = "Option::is_none")]
     #[serde(rename = "nm")]
     pub name: Option<String>,
     #[serde(rename = "a", default = "properties::MultiDimensional::zero")]
