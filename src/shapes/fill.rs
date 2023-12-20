@@ -26,7 +26,7 @@ impl Default for Fill {
             name: None,
             fill_enabled: None,
             opacity: properties::Scalar::hundred(),
-            color: properties::MultiDimensional::fixed(vec![0.0; 3])
+            color: properties::MultiDimensional::fixed(vec![0.0; 3]),
         }
     }
 }

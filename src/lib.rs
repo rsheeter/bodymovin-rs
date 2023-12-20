@@ -69,7 +69,7 @@ impl Default for Bodymovin {
             name: None,
             layers: vec![],
             assets: vec![],
-            chars: vec![]
+            chars: vec![],
         }
     }
 }

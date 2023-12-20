@@ -29,7 +29,7 @@ impl Default for ShapeMixin {
         Self {
             ty: util::a_u8_4_please(),
             bounds: None,
-            shapes: vec![]
+            shapes: vec![],
         }
     }
 }
