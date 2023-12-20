@@ -107,3 +107,9 @@ impl SplittableMultiDimensional {
         Self::Uniform(MultiDimensional::zero())
     }
 }
+
+impl Default for SplittableMultiDimensional {
+    fn default() -> Self {
+        Self::Uniform(MultiDimensional::zero())
+    }
+}

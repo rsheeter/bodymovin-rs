@@ -55,3 +55,21 @@ impl Bodymovin {
         serde_json::from_slice(bytes.as_ref()).map_err(Error::from)
     }
 }
+
+impl Default for Bodymovin {
+    fn default() -> Self {
+        Self {
+            in_point: 0.0,
+            out_point: 0.0,
+            frame_rate: 60.0,
+            width: 100,
+            height: 100,
+            is_3d: false,
+            version: "5.9.0".to_owned(),
+            name: None,
+            layers: vec![],
+            assets: vec![],
+            chars: vec![]
+        }
+    }
+}

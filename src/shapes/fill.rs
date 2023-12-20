@@ -18,3 +18,15 @@ pub struct Fill {
     #[serde(rename = "c")]
     pub color: properties::MultiDimensional,
 }
+
+impl Default for Fill {
+    fn default() -> Self {
+        Self {
+            match_name: None,
+            name: None,
+            fill_enabled: None,
+            opacity: properties::Scalar::hundred(),
+            color: properties::MultiDimensional::fixed(vec![0.0; 3])
+        }
+    }
+}

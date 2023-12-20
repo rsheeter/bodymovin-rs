@@ -1,7 +1,7 @@
 use crate::{helpers, util};
 use serde::{Deserialize, Serialize};
 
-#[derive(Clone, Debug, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Serialize, Deserialize)]
 pub struct Layer<M> {
     #[serde(rename = "ks")]
     pub transform: helpers::Transform,
