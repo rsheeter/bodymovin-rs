@@ -1,7 +1,7 @@
 use crate::{properties, util};
 use serde::{Deserialize, Serialize};
 
-use super::Value;
+use super::{Value};
 
 pub type ScalarValue = f64;
 

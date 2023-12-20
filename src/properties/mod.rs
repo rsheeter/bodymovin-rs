@@ -7,6 +7,9 @@ mod shape;
 pub use self::{double_keyframe::*, gradient::*, multi_dimensional::*, scalar::*, shape::*};
 use serde::{de::Deserializer, Deserialize, Serialize};
 
+/// Experimentation with AE export suggests this pattern
+pub type ScalarOrMultiKeyframe = Property<ScalarValue, MultiDimensionalKeyframe>;
+
 #[derive(Debug, Deserialize)]
 #[serde(untagged)]
 enum Destructurer {

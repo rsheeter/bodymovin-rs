@@ -14,7 +14,7 @@ pub struct Transform {
     #[serde(rename = "s")]
     pub scale: properties::MultiDimensional,
     #[serde(rename = "r")]
-    pub rotation: properties::Scalar,
+    pub rotation: properties::ScalarOrMultiKeyframe,
     #[serde(rename = "o")]
     pub opacity: properties::Scalar,
     #[serde(rename = "sk")]
