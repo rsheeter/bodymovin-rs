@@ -4,18 +4,23 @@ use serde::{Deserialize, Serialize};
 
 pub type MultiDimensionalValue = Vec<properties::ScalarValue>;
 
-#[derive(Clone, Debug, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Serialize, Deserialize)]
 pub struct MultiDimensionalKeyframe {
+    #[serde(skip_serializing_if = "Option::is_none")]
     #[serde(rename = "s")]
     pub start_value: Option<MultiDimensionalValue>,
+    #[serde(skip_serializing_if = "Option::is_none")]
     #[serde(rename = "e")]
     pub end_value: Option<MultiDimensionalValue>,
     #[serde(rename = "t")]
     pub start_time: f64,
+    #[serde(skip_serializing_if = "util::bool_is_false")]
     #[serde(rename = "h", deserialize_with = "util::bool_from_int", default)]
     pub hold: bool,
+    #[serde(skip_serializing_if = "Option::is_none")]
     #[serde(flatten)]
     pub bezier: Option<properties::BezierEase>,
+    #[serde(skip_serializing_if = "Option::is_none")]
     #[serde(flatten)]
     pub spatial_bezier: Option<properties::SpatialBezier>,
 }
@@ -66,6 +71,11 @@ impl MultiDimensional {
 
     pub fn scaled(self, scale: &Vec<f64>) -> Self {
         Self {
+            animated: if matches!(self.value, Value::Animated(..)) {
+                1
+            } else {
+                0
+            },
             value: match self.value {
                 Value::Fixed(val) => Value::Fixed(
                     val.iter()

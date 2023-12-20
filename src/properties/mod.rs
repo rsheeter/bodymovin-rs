@@ -123,6 +123,9 @@ where
 
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub struct Property<F, A> {
+    #[serde(rename = "a")]
+    pub animated: i8,
+
     #[serde(rename = "k")]
     pub value: Value<F, A>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -139,6 +142,7 @@ where
 {
     fn default() -> Self {
         Self {
+            animated: 0,
             value: Value::default(),
             expression: None,
             index: None,
@@ -149,6 +153,7 @@ where
 impl<F, A> Property<F, A> {
     pub(crate) fn fixed(value: F) -> Self {
         Self {
+            animated: 0,
             value: Value::Fixed(value),
             expression: None,
             index: None,

@@ -68,6 +68,11 @@ impl Scalar {
 
     pub fn scaled(self, scale: f64) -> Self {
         Self {
+            animated: if matches!(self.value, Value::Animated(..)) {
+                1
+            } else {
+                0
+            },
             value: match self.value {
                 Value::Fixed(val) => Value::Fixed(val * scale),
                 Value::Animated(vals) => {
