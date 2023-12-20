@@ -30,7 +30,7 @@ where
     Destructurer::deserialize(deserializer).map(Into::into)
 }
 
-#[derive(Clone, Debug, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Serialize, Deserialize)]
 pub struct ControlPoint2d {
     #[serde(deserialize_with = "destructure")]
     pub x: f64,
