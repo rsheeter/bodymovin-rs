@@ -4,18 +4,18 @@ mod gradient_fill;
 mod gradient_stroke;
 mod group;
 mod merge;
+mod path;
 mod rect;
 mod repeater;
 mod rounded_corners;
-mod shape;
 mod star;
 mod stroke;
 mod transform;
 mod trim;
 
 pub use self::{
-    ellipse::*, fill::*, gradient_fill::*, gradient_stroke::*, group::*, merge::*, rect::*,
-    repeater::*, repeater::*, rounded_corners::*, shape::*, star::*, stroke::*, transform::*,
+    ellipse::*, fill::*, gradient_fill::*, gradient_stroke::*, group::*, merge::*, path::*,
+    rect::*, repeater::*, repeater::*, rounded_corners::*, star::*, stroke::*, transform::*,
     trim::*,
 };
 use serde::{Deserialize, Serialize};
@@ -32,7 +32,7 @@ pub enum GradientType {
 #[serde(tag = "ty")]
 pub enum AnyShape {
     #[serde(rename = "sh")]
-    Shape(Shape),
+    Shape(SubPath),
     #[serde(rename = "rc")]
     Rect(Rect),
     #[serde(rename = "el")]
