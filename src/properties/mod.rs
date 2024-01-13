@@ -15,13 +15,22 @@ pub type ScalarOrMultiKeyframe = Property<ScalarValue, MultiDimensionalKeyframe>
 enum Destructurer {
     Bare(f64),
     Tuple((f64,)),
-    Array([f64; 1]),
+    Array1([f64; 1]),
+    // seems like it shouldn't happen per https://lottiefiles.github.io/lottie-docs/schema/#/$defs/animated-properties/keyframe-bezier-handle
+    // but observably does occur
+    Array2([f64; 2]),
 }
 
 impl Into<f64> for Destructurer {
     fn into(self) -> f64 {
         match self {
-            Self::Bare(value) | Self::Tuple((value,)) | Self::Array([value]) => value,
+            Self::Bare(value) | Self::Tuple((value,)) | Self::Array1([value]) => value,
+            Self::Array2([v1, v2]) => {
+                if v1 != v2 {
+                    panic!("What do multiple values here even mean??");
+                }
+                v1
+            }
         }
     }
 }
