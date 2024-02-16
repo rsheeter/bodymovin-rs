@@ -53,6 +53,13 @@ impl ScalarKeyframe {
 
 pub type Scalar = properties::Property<ScalarValue, ScalarKeyframe>;
 
+pub fn scaler_is_zero(scaler: &Scalar) -> bool {
+    match scaler.value {
+        Value::Fixed(value) => value == 0.0,
+        Value::Animated(..) => false,
+    }
+}
+
 impl Scalar {
     pub(crate) fn zero() -> Self {
         Self::fixed(0.0)

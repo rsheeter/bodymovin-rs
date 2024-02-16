@@ -1,4 +1,7 @@
-use serde::de::{self, Deserialize as _, Deserializer, Unexpected};
+use serde::{
+    de::{self, Deserialize as _, Deserializer, Unexpected},
+    Serializer,
+};
 
 pub const fn one_please() -> f64 {
     1.0
@@ -55,4 +58,11 @@ where
             &"zero or one",
         )),
     }
+}
+
+pub fn bool_to_int<S>(value: &bool, serializer: S) -> Result<S::Ok, S::Error>
+where
+    S: Serializer,
+{
+    serializer.serialize_i32(*value as i32)
 }

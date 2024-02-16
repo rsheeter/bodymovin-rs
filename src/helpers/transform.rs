@@ -14,10 +14,13 @@ pub struct Transform {
     pub rotation: properties::Scalar,
     #[serde(rename = "o")]
     pub opacity: properties::Scalar,
+    #[serde(skip_serializing_if = "properties::scaler_is_zero")]
     #[serde(rename = "px")]
     pub position_x: properties::Scalar,
+    #[serde(skip_serializing_if = "properties::scaler_is_zero")]
     #[serde(rename = "py")]
     pub position_y: properties::Scalar,
+    #[serde(skip_serializing_if = "properties::scaler_is_zero")]
     #[serde(rename = "pz")]
     pub position_z: properties::Scalar,
     #[serde(rename = "sk")]
