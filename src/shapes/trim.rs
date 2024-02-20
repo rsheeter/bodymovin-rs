@@ -1,7 +1,7 @@
 use crate::{helpers, properties};
 use serde::{Deserialize, Serialize};
 
-#[derive(Clone, Debug, Serialize, Deserialize)]
+#[derive(Clone, Debug, Serialize, Deserialize, PartialEq)]
 pub struct Trim {
     #[serde(rename = "mn")]
     pub match_name: Option<String>,

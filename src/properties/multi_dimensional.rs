@@ -4,7 +4,7 @@ use serde::{Deserialize, Serialize};
 
 pub type MultiDimensionalValue = Vec<properties::ScalarValue>;
 
-#[derive(Clone, Debug, Default, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Serialize, Deserialize, PartialEq)]
 pub struct MultiDimensionalKeyframe {
     #[serde(skip_serializing_if = "Option::is_none")]
     #[serde(rename = "s")]

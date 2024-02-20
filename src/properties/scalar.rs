@@ -5,7 +5,7 @@ use super::Value;
 
 pub type ScalarValue = f64;
 
-#[derive(Clone, Copy, Debug, Serialize, Deserialize)]
+#[derive(Clone, Copy, Debug, Serialize, Deserialize, PartialEq)]
 #[repr(transparent)]
 pub struct DestructuredScalarValue(
     #[serde(deserialize_with = "properties::destructure")] pub ScalarValue,
@@ -17,7 +17,7 @@ impl Into<ScalarValue> for DestructuredScalarValue {
     }
 }
 
-#[derive(Clone, Debug, Default, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Serialize, Deserialize, PartialEq)]
 pub struct ScalarKeyframe {
     #[serde(skip_serializing_if = "Option::is_none")]
     #[serde(rename = "s")]

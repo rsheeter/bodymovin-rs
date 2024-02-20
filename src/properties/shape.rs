@@ -13,7 +13,7 @@ pub struct ShapeValue {
     pub vertices: Vec<(f64, f64)>,
 }
 
-#[derive(Clone, Debug, Default, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Serialize, Deserialize, PartialEq)]
 pub struct ShapeKeyframe {
     #[serde(rename = "s")]
     pub start_value: Option<Vec<ShapeValue>>,

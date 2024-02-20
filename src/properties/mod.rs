@@ -42,7 +42,7 @@ where
     Destructurer::deserialize(deserializer).map(Into::into)
 }
 
-#[derive(Clone, Debug, Default, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Serialize, Deserialize, PartialEq)]
 pub struct ControlPoint2d {
     #[serde(deserialize_with = "destructure")]
     pub x: f64,
@@ -50,13 +50,13 @@ pub struct ControlPoint2d {
     pub y: f64,
 }
 
-#[derive(Clone, Debug, Serialize, Deserialize)]
+#[derive(Clone, Debug, Serialize, Deserialize, PartialEq)]
 pub struct ControlPoint3d {
     pub x: [f64; 3],
     pub y: [f64; 3],
 }
 
-#[derive(Clone, Debug, Serialize, Deserialize)]
+#[derive(Clone, Debug, Serialize, Deserialize, PartialEq)]
 pub struct Bezier2d {
     #[serde(rename = "i")]
     pub in_value: ControlPoint2d,
@@ -64,7 +64,7 @@ pub struct Bezier2d {
     pub out_value: ControlPoint2d,
 }
 
-#[derive(Clone, Debug, Serialize, Deserialize)]
+#[derive(Clone, Debug, Serialize, Deserialize, PartialEq)]
 pub struct Bezier3d {
     #[serde(rename = "i")]
     pub in_value: ControlPoint3d,
@@ -72,14 +72,14 @@ pub struct Bezier3d {
     pub out_value: ControlPoint3d,
 }
 
-#[derive(Clone, Debug, Serialize, Deserialize)]
+#[derive(Clone, Debug, Serialize, Deserialize, PartialEq)]
 #[serde(untagged)]
 pub enum BezierEase {
     _2D(Bezier2d),
     _3D(Bezier3d),
 }
 
-#[derive(Clone, Debug, Serialize, Deserialize)]
+#[derive(Clone, Debug, Serialize, Deserialize, PartialEq)]
 pub struct SpatialBezier {
     #[serde(rename = "ti")]
     pub in_value: Vec<f64>,
@@ -117,24 +117,33 @@ impl SpatialBezier {
     }
 }
 
-#[derive(Clone, Debug, Serialize, Deserialize)]
+#[derive(Clone, Debug, Serialize, Deserialize, PartialEq)]
 #[serde(untagged)]
-pub enum Value<F, A> {
+pub enum Value<F, A>
+where
+    F: Default,
+    A: PartialEq,
+{
     Fixed(F),
     Animated(Vec<A>),
 }
 
 impl<F, A> Default for Value<F, A>
 where
-    F: Default,
+    F: Default + PartialEq,
+    A: PartialEq,
 {
     fn default() -> Self {
         Self::Fixed(F::default())
     }
 }
 
-#[derive(Clone, Debug, Serialize, Deserialize)]
-pub struct Property<F, A> {
+#[derive(Clone, Debug, Serialize, Deserialize, PartialEq)]
+pub struct Property<F, A>
+where
+    F: Default + PartialEq,
+    A: PartialEq,
+{
     #[serde(rename = "a")]
     pub animated: i8,
 
@@ -150,7 +159,8 @@ pub struct Property<F, A> {
 
 impl<F, A> Default for Property<F, A>
 where
-    F: Default,
+    F: Default + PartialEq,
+    A: PartialEq,
 {
     fn default() -> Self {
         Self {
@@ -162,7 +172,11 @@ where
     }
 }
 
-impl<F, A> Property<F, A> {
+impl<F, A> Property<F, A>
+where
+    F: Default + PartialEq,
+    A: PartialEq,
+{
     pub(crate) fn fixed(value: F) -> Self {
         Self {
             animated: 0,
